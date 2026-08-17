@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FindSafe AI - AI-Assisted Missing Person Identification and Case Management Platform. Connecting information. Finding possibilities. Bringing people home.">
+  <title>FindSafe AI – AI-Assisted Missing Person Finder</title>
+
+  <!-- Google Fonts & Font Awesome CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Safety & Educational Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> FindSafe AI is an educational technology demonstration. Potential AI matches are investigative leads only and require human verification by authorized authorities.
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+          <li><a href="report.html" class="nav-link nav-cta">+ Report Case</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">
+          <i class="fa-solid fa-satellite-dish"></i> Intelligent Case Matching Engine
+        </div>
+        <h1 class="hero-title">
+          Help Bring <span>Missing People</span> Home.
+        </h1>
+        <p class="hero-description">
+          FindSafe AI centralizes missing-person information, coordinates community sighting reports, and utilizes prototype similarity matching algorithms to prioritize leads for emergency responders.
+        </p>
+        <div class="hero-actions">
+          <a href="report.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-user-plus"></i> Report Missing Person
+          </a>
+          <a href="search.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-magnifying-glass"></i> Search Active Cases
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Search Interactive Box -->
+      <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl);">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-bolt" style="color: var(--cyan-500);"></i> Instant Case Lookup
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.85rem; color: var(--neutral-300); font-weight: 500; display: block; margin-bottom: 0.35rem;">Search by Name, City, or Case ID</label>
+            <input type="text" id="quick-search-input" class="form-control" placeholder="e.g. Sarah, Austin, FS-2026-0001..." style="background: rgba(15, 23, 42, 0.8); color: var(--white); border-color: rgba(255,255,255,0.2);">
+          </div>
+          <button class="btn btn-primary" onclick="location.href='search.html?q=' + encodeURIComponent(document.getElementById('quick-search-input').value)">
+            <i class="fa-solid fa-magnifying-glass"></i> Run Directory Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Statistics Section -->
+  <section class="container" style="margin-bottom: 4rem;">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon primary"><i class="fa-solid fa-folder-open"></i></div>
+        <div>
+          <div class="stat-number" id="stat-active-count">0</div>
+          <div class="stat-label">Active Missing Cases</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success"><i class="fa-solid fa-person-circle-check"></i></div>
+        <div>
+          <div class="stat-number" id="stat-found-count">0</div>
+          <div class="stat-label">Located / Found Persons</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning"><i class="fa-solid fa-eye"></i></div>
+        <div>
+          <div class="stat-number" id="stat-sightings-count">0</div>
+          <div class="stat-label">Community Sightings</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon cyan"><i class="fa-solid fa-microchip"></i></div>
+        <div>
+          <div class="stat-number" id="stat-matches-count">0</div>
+          <div class="stat-label">Potential AI Leads</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section section-bg-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">System Workflow</span>
+        <h2 class="section-title">How FindSafe AI Operates</h2>
+        <p class="section-description">A structured 5-step methodology designed to organize information and accelerate critical leads.</p>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="workflow-step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Register Case</h3>
+          <p class="step-desc">Families or authorized reporters register detailed missing-person profiles with photographs.</p>
+        </article>
+
+        <article class="workflow-step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Upload Information</h3>
+          <p class="step-desc">Upload clothing descriptions, physical marks, last-known GPS coordinates, and contact details.</p>
+        </article>
+
+        <article class="workflow-step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">AI-Assisted Match</h3>
+          <p class="step-desc">Similarity algorithms evaluate incoming photo sightings against active case records.</p>
+        </article>
+
+        <article class="workflow-step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Verify Potential Leads</h3>
+          <p class="step-desc">High-confidence potential matches are flagged for manual verification by emergency personnel.</p>
+        </article>
+
+        <article class="workflow-step">
+          <div class="step-number">5</div>
+          <h3 class="step-title">Resolve & Reunite</h3>
+          <p class="step-desc">Case records are updated upon safe location confirmation by authorized authorities.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Cases Grid -->
+  <section class="section">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="section-subtitle">Urgent Attention Required</span>
+          <h2 class="section-title" style="margin-bottom: 0;">Featured Missing Cases</h2>
+        </div>
+        <a href="search.html" class="btn btn-outline">
+          View All Cases Directory <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="cards-grid" id="featured-cases-container">
+        <!-- Rendered dynamically by cases.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="section section-bg-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Geospatial Intelligence</span>
+        <h2 class="section-title">Case & Sighting Location Map</h2>
+        <p class="section-description">Interactive map highlighting last-seen locations and community-reported sightings.</p>
+      </div>
+
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>FindSafe AI</div>
+          </a>
+          <p style="font-size: 0.9rem; line-height: 1.6; margin-top: 1rem; color: var(--neutral-400);">
+            FindSafe AI is a prototype platform dedicated to demonstrating how intelligent technology can assist public safety and missing person recovery efforts.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Search Directory</a></li>
+            <li><a href="report.html">Report Missing Person</a></li>
+            <li><a href="sighting.html">Report Sighting</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">System Tools</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Analytics Dashboard</a></li>
+            <li><a href="admin.html">Prototype Admin Portal</a></li>
+            <li><a href="about.html">Technical Specifications</a></li>
+            <li><a href="about.html#privacy">Ethics & Safety Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Emergency Notice</h4>
+          <p style="font-size: 0.85rem; color: var(--neutral-400); margin-bottom: 1rem;">
+            If you are witnessing an immediate life-threatening emergency, please dial 911 or contact local law enforcement directly.
+          </p>
+          <a href="report.html" class="btn btn-primary btn-sm" style="width: 100%;">
+            <i class="fa-solid fa-plus"></i> File New Report
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 FindSafe AI Project. Standard Static Web Application.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="about.html" style="color: var(--neutral-400);">Privacy Policy</a>
+          <a href="about.html" style="color: var(--neutral-400);">Terms of Service</a>
+          <a href="about.html" style="color: var(--neutral-400);">Safety Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CDN Scripts & App Modules -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cases.js"></script>
+  <script src="js/matching.js"></script>
+  <script src="js/sightings.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/map.js"></script>
+
+</body>
+</html>

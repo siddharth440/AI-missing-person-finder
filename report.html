@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Missing Person – FindSafe AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Safety & Educational Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> FindSafe AI is an educational technology demonstration. Reports filed here are stored in your browser's local memory.
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link active"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Case Registration</span>
+        <h1 class="section-title">Report a Missing Person</h1>
+        <p class="section-description">Please fill out all known details accurately to assist identification and matching algorithms.</p>
+      </div>
+
+      <div class="form-card">
+        <form id="missing-person-form" novalidate>
+          <div class="form-grid">
+            
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="full-name">Full Legal Name <span class="required">*</span></label>
+              <input type="text" id="full-name" class="form-control" placeholder="e.g. Eleanor Vance" required>
+              <div class="invalid-feedback" id="err-full-name">Please provide full name</div>
+            </div>
+
+            <!-- Age & Gender -->
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div>
+                <label class="form-label" for="age">Age <span class="required">*</span></label>
+                <input type="number" id="age" class="form-control" placeholder="e.g. 26" min="0" max="120" required>
+              </div>
+              <div>
+                <label class="form-label" for="gender">Gender <span class="required">*</span></label>
+                <select id="gender" class="form-control" required>
+                  <option value="">Select...</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Non-Binary">Non-Binary</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Date & Time Missing -->
+            <div class="form-group">
+              <label class="form-label" for="date-missing">Date Missing <span class="required">*</span></label>
+              <input type="date" id="date-missing" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="time-missing">Time Last Seen</label>
+              <input type="time" id="time-missing" class="form-control">
+            </div>
+
+            <!-- Last Seen Location & City -->
+            <div class="form-group">
+              <label class="form-label" for="last-location">Last Known Specific Location <span class="required">*</span></label>
+              <input type="text" id="last-location" class="form-control" placeholder="e.g. Central Metro Station Platform 2" required>
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div>
+                <label class="form-label" for="city">City <span class="required">*</span></label>
+                <input type="text" id="city" class="form-control" placeholder="e.g. Austin" required>
+              </div>
+              <div>
+                <label class="form-label" for="state">State / Province <span class="required">*</span></label>
+                <input type="text" id="state" class="form-control" placeholder="e.g. TX" required>
+              </div>
+            </div>
+
+            <!-- Height & Country -->
+            <div class="form-group">
+              <label class="form-label" for="height">Height / Build</label>
+              <input type="text" id="height" class="form-control" placeholder="e.g. 5' 7&quot; (170 cm), Slim build">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="country">Country</label>
+              <input type="text" id="country" class="form-control" value="USA">
+            </div>
+
+            <!-- Clothing Description -->
+            <div class="form-group full-width">
+              <label class="form-label" for="clothing">Clothing Description when Last Seen</label>
+              <textarea id="clothing" class="form-control" placeholder="Describe jacket color, pants, footwear, eyeglasses, backpack, jewelry, etc."></textarea>
+            </div>
+
+            <!-- Identifying Marks -->
+            <div class="form-group full-width">
+              <label class="form-label" for="identifying-marks">Identifying Marks, Tattoos, or Scars</label>
+              <textarea id="identifying-marks" class="form-control" placeholder="Tattoos, birthmarks, surgical scars, piercings, medical conditions..."></textarea>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="form-group full-width">
+              <label class="form-label" for="contact-info">Investigating Agency / Contact Phone <span class="required">*</span></label>
+              <input type="text" id="contact-info" class="form-control" placeholder="e.g. Austin Police Dept - Case #8892 | Tip Hotline (512) 555-0199" required>
+            </div>
+
+            <!-- Photo Upload Dropzone -->
+            <div class="form-group full-width">
+              <label class="form-label">Recent Photograph <span class="required">*</span></label>
+              <div class="upload-dropzone" id="photo-dropzone" onclick="document.getElementById('photo-input').click()">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                <div style="font-weight: 600; color: var(--primary-900);">Click or drag image file here</div>
+                <div style="font-size: 0.8rem; color: var(--neutral-500); margin-top: 0.25rem;">Supports JPG, PNG, WEBP, or SVG. Stored locally.</div>
+                <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                <img id="photo-preview" class="upload-preview" style="display: none;" alt="Preview missing person photo">
+              </div>
+            </div>
+
+          </div>
+
+          <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="reset" class="btn btn-outline">Reset Form</button>
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-paper-plane"></i> Submit & Generate Case ID
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Success Confirmation Modal -->
+  <div class="modal-overlay" id="report-success-modal">
+    <div class="modal-dialog">
+      <div class="modal-header" style="background: var(--emerald-600); color: var(--white);">
+        <h3 class="modal-title" style="color: var(--white);"><i class="fa-solid fa-circle-check"></i> Case Registered Successfully</h3>
+        <button class="modal-close" style="color: var(--white);" onclick="closeModal('report-success-modal')">&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center; padding: 2rem 1.5rem;">
+        <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--emerald-100); color: var(--emerald-600); font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+          <i class="fa-solid fa-shield-check"></i>
+        </div>
+        <h3 style="font-size: 1.5rem; color: var(--primary-900); font-weight: 800; margin-bottom: 0.5rem;">Unique Case ID Generated</h3>
+        <p style="color: var(--neutral-600); margin-bottom: 1.5rem;">
+          The missing person record has been saved in your local prototype session. Keep this Case ID for future reference and sighting tracking.
+        </p>
+
+        <div style="background: var(--primary-900); color: var(--cyan-500); padding: 1.25rem; border-radius: var(--radius-lg); font-family: var(--font-mono); font-size: 1.75rem; font-weight: 700; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;" id="modal-case-id-display">
+          <span>FS-2026-0000</span>
+          <button class="btn btn-sm btn-secondary" onclick="copyToClipboard(document.querySelector('#modal-case-id-display span').textContent)">
+            <i class="fa-solid fa-copy"></i> Copy
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <a href="search.html" class="btn btn-outline">View Directory</a>
+          <a href="" id="modal-dossier-btn" class="btn btn-primary">Open Dossier Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FindSafe AI. Educational Prototype.</div>
+      <div><a href="index.html" style="color:var(--neutral-400);">Back to Home</a></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    let uploadedPhotoDataUrl = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set default date missing to today
+      const dateInput = document.getElementById("date-missing");
+      if (dateInput) {
+        dateInput.value = new Date().toISOString().split("T")[0];
+      }
+
+      // Handle Image File Drag/Drop or Select
+      const photoInput = document.getElementById("photo-input");
+      const dropzone = document.getElementById("photo-dropzone");
+      const previewImg = document.getElementById("photo-preview");
+
+      if (photoInput) {
+        photoInput.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (file) handlePhotoFile(file);
+        });
+      }
+
+      function handlePhotoFile(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          uploadedPhotoDataUrl = e.target.result;
+          previewImg.src = uploadedPhotoDataUrl;
+          previewImg.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Form Submit Handler
+      const form = document.getElementById("missing-person-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("full-name").value.trim();
+        const age = document.getElementById("age").value;
+        const gender = document.getElementById("gender").value;
+        const dateMissing = document.getElementById("date-missing").value;
+        const timeMissing = document.getElementById("time-missing").value;
+        const lastLocation = document.getElementById("last-location").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const state = document.getElementById("state").value.trim();
+        const contactInfo = document.getElementById("contact-info").value.trim();
+
+        if (!name || !age || !gender || !dateMissing || !lastLocation || !city || !state || !contactInfo) {
+          showToast("Please fill in all required fields (*)", "warning");
+          return;
+        }
+
+        const caseId = generateCaseId();
+
+        // Fallback vector photo if user didn't select an image
+        const photo = uploadedPhotoDataUrl || createAvatarSvg("#0f172a", "#3b82f6", "#1d4ed8", "#1e293b", gender === "Female");
+
+        const newCase = {
+          id: caseId,
+          name: name,
+          age: parseInt(age, 10),
+          gender: gender,
+          dateMissing: dateMissing,
+          timeMissing: timeMissing || "Unknown",
+          lastSeenLocation: lastLocation,
+          city: city,
+          state: state,
+          country: document.getElementById("country").value.trim() || "USA",
+          height: document.getElementById("height").value.trim(),
+          clothingDescription: document.getElementById("clothing").value.trim(),
+          identifyingMarks: document.getElementById("identifying-marks").value.trim(),
+          contactInfo: contactInfo,
+          additionalInfo: "New case reported via public registration portal.",
+          status: "Active",
+          createdAt: new Date().toISOString(),
+          photo: photo,
+          lat: 30.2672,
+          lng: -97.7431
+        };
+
+        saveCase(newCase);
+
+        // Display Success Modal
+        document.querySelector("#modal-case-id-display span").textContent = caseId;
+        document.getElementById("modal-dossier-btn").href = `case.html?id=${caseId}`;
+        openModal("report-success-modal");
+
+        showToast("Missing person case registered successfully!", "success");
+      });
+    });
+  </script>
+</body>
+</html>

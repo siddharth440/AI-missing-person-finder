@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Sighting – FindSafe AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> Community sighting reports are logged in local storage and assist lead verification.
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link active"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Community Tip Intake</span>
+        <h1 class="section-title">Report a Sighting</h1>
+        <p class="section-description">Have you spotted someone matching an active missing person profile? Submit your observation below.</p>
+      </div>
+
+      <div class="form-card">
+        <form id="sighting-report-form">
+          <div class="form-grid">
+            
+            <!-- Case ID Input & Preview -->
+            <div class="form-group full-width">
+              <label class="form-label" for="sighting-case-id">Target Case ID <span class="required">*</span></label>
+              <input type="text" id="sighting-case-id" class="form-control" placeholder="e.g. FS-2026-0001" required>
+              <div id="sighting-case-preview"></div>
+            </div>
+
+            <!-- Date & Time of Sighting -->
+            <div class="form-group">
+              <label class="form-label" for="sighting-date">Date Observed <span class="required">*</span></label>
+              <input type="date" id="sighting-date" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="sighting-time">Approximate Time</label>
+              <input type="time" id="sighting-time" class="form-control">
+            </div>
+
+            <!-- Location Details -->
+            <div class="form-group full-width">
+              <label class="form-label" for="sighting-location">Specific Sighting Location / Landmark <span class="required">*</span></label>
+              <input type="text" id="sighting-location" class="form-control" placeholder="e.g. North Exit near Transit Hub coffee shop" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="sighting-city">City <span class="required">*</span></label>
+              <input type="text" id="sighting-city" class="form-control" placeholder="e.g. Austin" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="sighting-state">State / Region</label>
+              <input type="text" id="sighting-state" class="form-control" placeholder="e.g. TX">
+            </div>
+
+            <!-- Observation Description -->
+            <div class="form-group full-width">
+              <label class="form-label" for="sighting-desc">Detailed Description of Sighting</label>
+              <textarea id="sighting-desc" class="form-control" placeholder="Describe the person's current appearance, apparel, direction of travel, companions, physical condition, or demeanor..."></textarea>
+            </div>
+
+            <!-- Reporter Info -->
+            <div class="form-group">
+              <label class="form-label" for="reporter-name">Your Full Name</label>
+              <input type="text" id="reporter-name" class="form-control" placeholder="Optional if reporting anonymously">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reporter-contact">Your Contact Phone / Email</label>
+              <input type="text" id="reporter-contact" class="form-control" placeholder="For police tip verification">
+            </div>
+
+            <!-- Anonymous Checkbox -->
+            <div class="form-group full-width" style="display: flex; align-items: center; gap: 0.75rem; background: var(--neutral-100); padding: 1rem; border-radius: var(--radius-md);">
+              <input type="checkbox" id="anonymous-toggle" style="width: 20px; height: 20px; cursor: pointer;">
+              <label for="anonymous-toggle" style="font-size: 0.9rem; font-weight: 600; color: var(--primary-900); cursor: pointer;">
+                Submit this sighting anonymously (Hide my contact details from public record)
+              </label>
+            </div>
+
+          </div>
+
+          <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
+            <button type="reset" class="btn btn-outline">Clear Form</button>
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-paper-plane"></i> Transmit Sighting Tip
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FindSafe AI Project. Educational Prototype.</div>
+      <div><a href="index.html" style="color:var(--neutral-400);">Back to Home</a></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/sightings.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dateInput = document.getElementById("sighting-date");
+      if (dateInput) {
+        dateInput.value = new Date().toISOString().split("T")[0];
+      }
+    });
+  </script>
+</body>
+</html>

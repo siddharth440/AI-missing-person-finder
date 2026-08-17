@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Missing Persons – FindSafe AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> FindSafe AI is an educational technology demonstration. Results require human verification.
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link active"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <span class="section-subtitle">Database Directory</span>
+        <h1 class="section-title">Search Missing Persons</h1>
+        <p class="section-description">Filter cases by status, search by keywords, or initiate AI lead matching.</p>
+      </div>
+
+      <!-- Toolbar & Filters -->
+      <div class="toolbar-card">
+        <div style="flex: 1; min-width: 260px; position: relative;">
+          <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--neutral-400);"></i>
+          <input type="text" id="search-input" class="form-control" placeholder="Search by name, Case ID (e.g. FS-2026-0001), city..." style="padding-left: 2.75rem;">
+        </div>
+
+        <div class="filter-pills">
+          <button class="filter-pill active" data-filter="All">All Cases</button>
+          <button class="filter-pill" data-filter="Active">Active</button>
+          <button class="filter-pill" data-filter="Under Investigation">Under Investigation</button>
+          <button class="filter-pill" data-filter="Potential Match">Potential Match</button>
+          <button class="filter-pill" data-filter="Found">Found</button>
+        </div>
+
+        <div style="min-width: 160px;">
+          <select id="sort-select" class="form-control" style="font-size: 0.875rem;">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="name">Name (A-Z)</option>
+            <option value="age">Age (Ascending)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Cases Grid Container -->
+      <div class="cards-grid" id="cases-grid-container">
+        <!-- Rendered dynamically by cases.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FindSafe AI Project. Static Prototype.</div>
+      <div><a href="index.html" style="color:var(--neutral-400);">Back to Home</a></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cases.js"></script>
+  <script src="js/matching.js"></script>
+
+  <script>
+    // Read search query parameter from URL if redirected from Home quick search
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = urlParams.get("q");
+      if (queryParam) {
+        const searchInput = document.getElementById("search-input");
+        if (searchInput) {
+          searchInput.value = queryParam;
+          currentSearchQuery = queryParam;
+          renderCasesDirectory();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

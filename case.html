@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Dossier – FindSafe AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> FindSafe AI is an educational technology demonstration. Potential AI matches require official authority verification.
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dossier Main Content -->
+  <main class="section">
+    <div class="container" id="case-details-container">
+      <!-- Rendered dynamically by cases.js based on URL ?id=FS-2026-XXXX -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FindSafe AI Project. Educational Prototype.</div>
+      <div><a href="search.html" style="color:var(--neutral-400);">Back to Cases Directory</a></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cases.js"></script>
+  <script src="js/matching.js"></script>
+  <script src="js/sightings.js"></script>
+
+</body>
+</html>

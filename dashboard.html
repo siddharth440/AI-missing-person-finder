@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Dashboard – FindSafe AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="dashboard-root">
+
+  <!-- Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> Analytics are computed client-side using localStorage metrics for demonstration purposes.
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <main class="section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 2.5rem;">
+        <span class="section-subtitle">System Metrics & Trends</span>
+        <h1 class="section-title">Analytics Dashboard</h1>
+        <p class="section-description">Real-time breakdown of case statuses, age demographics, regional incidents, and lead statistics.</p>
+      </div>
+
+      <!-- Stat Cards Grid -->
+      <div class="stats-grid" style="margin-top: 0; margin-bottom: 2.5rem;">
+        <div class="stat-card">
+          <div class="stat-icon primary"><i class="fa-solid fa-folder-open"></i></div>
+          <div>
+            <div class="stat-number" id="dash-total-cases">0</div>
+            <div class="stat-label">Total System Cases</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon warning"><i class="fa-solid fa-circle-exclamation"></i></div>
+          <div>
+            <div class="stat-number" id="dash-active-cases">0</div>
+            <div class="stat-label">Active Investigations</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon success"><i class="fa-solid fa-person-circle-check"></i></div>
+          <div>
+            <div class="stat-number" id="dash-found-cases">0</div>
+            <div class="stat-label">Found / Resolved</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon cyan"><i class="fa-solid fa-eye"></i></div>
+          <div>
+            <div class="stat-number" id="dash-sightings-count">0</div>
+            <div class="stat-label">Sighting Tips Filed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon primary"><i class="fa-solid fa-microchip"></i></div>
+          <div>
+            <div class="stat-number" id="dash-matches-count">0</div>
+            <div class="stat-label">Potential AI Leads</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+        
+        <!-- Status Breakdown Chart -->
+        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 1.75rem; border: 1px solid var(--neutral-200); box-shadow: var(--shadow-md);">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-900); margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-chart-pie" style="color: var(--accent-500);"></i> Cases by Status Breakdown
+          </h3>
+          <div style="height: 280px; position: relative;">
+            <canvas id="canvas-status-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- Age Distribution Chart -->
+        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 1.75rem; border: 1px solid var(--neutral-200); box-shadow: var(--shadow-md);">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-900); margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-chart-bar" style="color: var(--cyan-500);"></i> Age Group Demographics
+          </h3>
+          <div style="height: 280px; position: relative;">
+            <canvas id="canvas-age-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- Regional Distribution Chart -->
+        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 1.75rem; border: 1px solid var(--neutral-200); box-shadow: var(--shadow-md); grid-column: 1 / -1;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-900); margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-city" style="color: var(--emerald-600);"></i> Regional Incident Density (By City)
+          </h3>
+          <div style="height: 260px; position: relative;">
+            <canvas id="canvas-region-chart"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FindSafe AI Project. Static Prototype.</div>
+      <div><a href="index.html" style="color:var(--neutral-400);">Back to Home</a></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

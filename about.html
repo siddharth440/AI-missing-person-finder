@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About & Architecture – FindSafe AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Disclaimer Bar -->
+  <div class="disclaimer-banner">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <strong>PROTOTYPE SYSTEM:</strong> FindSafe AI is an educational technology demonstration. Results require human verification.
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          FindSafe AI
+          <span class="brand-tagline-sub">AI-Assisted Missing Person Finder</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="search.html" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search Cases</a></li>
+          <li><a href="report.html" class="nav-link"><i class="fa-solid fa-user-plus"></i> Report Missing</a></li>
+          <li><a href="sighting.html" class="nav-link"><i class="fa-solid fa-eye"></i> Report Sighting</a></li>
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link"><i class="fa-solid fa-user-gear"></i> Admin</a></li>
+          <li><a href="about.html" class="nav-link active"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="section">
+    <div class="container" style="max-width: 960px;">
+      <div class="section-header" style="text-align: left; max-width: 100%; margin-bottom: 3rem;">
+        <span class="section-subtitle">System Overview & Ethics</span>
+        <h1 class="section-title">About FindSafe AI</h1>
+        <p class="section-description">Connecting information. Finding possibilities. Bringing people home.</p>
+      </div>
+
+      <!-- Problem vs Solution -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 2rem; border: 1px solid var(--neutral-200); box-shadow: var(--shadow-md);">
+          <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--rose-100); color: var(--rose-600); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.75rem;">The Challenge</h3>
+          <p style="color: var(--neutral-600); line-height: 1.7; font-size: 0.95rem;">
+            Missing person investigations often involve massive quantities of fragmented, unorganized information scattered across community boards, social media feeds, and police filings. Critical early hours are lost to manual data triage.
+          </p>
+        </div>
+
+        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 2rem; border: 1px solid var(--neutral-200); box-shadow: var(--shadow-md);">
+          <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--cyan-100); color: var(--cyan-600); font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.75rem;">The Solution</h3>
+          <p style="color: var(--neutral-600); line-height: 1.7; font-size: 0.95rem;">
+            FindSafe AI provides a centralized, browser-native platform that aggregates case dossiers, logs community sightings, plots geospatial incident maps, and runs visual similarity scoring to prioritize potential leads.
+          </p>
+        </div>
+      </div>
+
+      <!-- Core Platform Benefits -->
+      <div style="background: var(--white); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--neutral-200); box-shadow: var(--shadow-md); margin-bottom: 3rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-900); margin-bottom: 1.5rem; border-bottom: 2px solid var(--neutral-100); padding-bottom: 0.75rem;">
+          Key Platform Advantages
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-600); margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-bolt"></i> Fast Lead Triage
+            </h4>
+            <p style="font-size: 0.875rem; color: var(--neutral-600);">Structured fields and vector comparison narrow down thousands of images into actionable candidate leads.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-600); margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-map-location-dot"></i> Geospatial Intelligence
+            </h4>
+            <p style="font-size: 0.875rem; color: var(--neutral-600);">Client-side OpenStreetMap integration visualizes last-seen coordinates and sighting density clusters.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-600); margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-database"></i> Zero-Backend Portability
+            </h4>
+            <p style="font-size: 0.875rem; color: var(--neutral-600);">Runs 100% client-side using browser LocalStorage. Requires no servers, databases, or API keys to deploy directly on GitHub Pages.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-600); margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-lock"></i> Privacy-Conscious Architecture
+            </h4>
+            <p style="font-size: 0.875rem; color: var(--neutral-600);">Supports anonymous tip submission and avoids collecting unnecessary personal telemetry.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsible AI Disclaimer Box -->
+      <div style="background: var(--primary-900); color: var(--white); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-xl);" id="privacy">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--cyan-500); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+          <i class="fa-solid fa-shield-cat"></i> Responsible AI & Educational Disclaimer
+        </h2>
+        <p style="color: var(--neutral-300); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.25rem;">
+          FindSafe AI is designed strictly as an <strong>educational prototype and hackathon concept</strong>. The photo similarity engine implemented in this system simulates feature extraction and vector matrix comparison.
+        </p>
+        <div style="background: rgba(255,255,255,0.08); border-left: 4px solid var(--amber-500); padding: 1rem 1.25rem; border-radius: var(--radius-md); font-size: 0.875rem; color: var(--neutral-200);">
+          <strong>Mandatory Notice:</strong> AI-generated match percentages do NOT constitute biometric legal identification or proof of identity. All candidate matches generated by this platform are potential leads intended solely for manual verification by qualified human investigators and law enforcement personnel.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 FindSafe AI Project. Static Prototype.</div>
+      <div><a href="index.html" style="color:var(--neutral-400);">Back to Home</a></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
